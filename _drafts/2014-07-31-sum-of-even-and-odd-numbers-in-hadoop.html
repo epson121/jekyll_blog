@@ -1,0 +1,105 @@
+---
+layout: post
+title: Sum of even and odd numbers in Hadoop
+date: 2014-07-31 20:29:40.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Hadoop
+- Java
+- MapReduce
+tags:
+- even
+- Hadoop
+- Java
+- odd
+- sum
+meta:
+  _edit_last: '44872122'
+  _publicize_pending: '1'
+  geo_public: '0'
+author:
+  login: lurajcevi
+  email: traxdater12@gmail.com
+  display_name: lurajcevi
+  first_name: ''
+  last_name: ''
+---
+<p>I have been reading about Hadoop in the last few weeks. I went through few books and articles, and wanted to try a more hands-on approach. So, while googling for examples I noticed that there is only one real simple example for Hadoop - Word count. This one is pretty easy, but it would not be really interesting to write another article about it. So, my example will be to count the sum of even and odd numbers in a file.</p>
+<p><!--more--></p>
+<p>Sample file (for testing) would consist of numbers - each one on its own line. Example would be this one:<br />
+[code]<br />
+1<br />
+2<br />
+3<br />
+4<br />
+1<br />
+2<br />
+[/code]</p>
+<p>Our application will, of course, consist of 3 parts: Mapper, Reducer and a main function to start the Job (in this example called the Driver). My files are called: <em>EvenOddSumMapper.java</em>, <em>EvenOddSumReducer.java</em> and <em>EvenOddSumDriver.java</em>.</p>
+<p>Here is the code for Mapper<br />
+[code language="java"]<br />
+public class EvenOddSumMapper extends Mapper&lt;LongWritable, Text, Text, IntWritable&gt; {</p>
+<p>    private Text even = new Text(&quot;even&quot;);<br />
+    private Text odd = new Text(&quot;odd&quot;);<br />
+    @Override<br />
+    protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {<br />
+    	int number  = Integer.parseInt(value.toString());<br />
+        IntWritable n = new IntWritable(number);<br />
+        if (number % 2 == 0) {<br />
+        	context.write(even, n);<br />
+        } else {<br />
+        	context.write(odd, n);<br />
+        }<br />
+    }<br />
+}<br />
+[/code]</p>
+<p>Simple run through the code: Hadoop reads the file line by line. It parses the line and gets the string out. Checks if the string is even or odd, and depending on the condition it writes the number as a value with the according key being even ("even") or odd ("odd").</p>
+<p>Reduces is as follows:<br />
+[code language="java"]<br />
+public class EvenOddSumReducer extends Reducer&lt;Text, IntWritable, Text, IntWritable&gt; {</p>
+<p>	  @Override<br />
+	  protected void reduce(Text key, Iterable&lt;IntWritable&gt; values, Context context) throws IOException, InterruptedException {<br />
+	        int sum = 0;<br />
+	        for (IntWritable val : values) {<br />
+	            sum += val.get();<br />
+	        }<br />
+	        context.write(key, new IntWritable(sum));<br />
+	  }<br />
+}<br />
+[/code]<br />
+Almost exactly (if not) the same code as for the Word Count example. We collect the same keys and update sum of even and odd numbers.</p>
+<p>Driver - class responsible for starting the hadoop job:<br />
+[code language="java"]<br />
+public class EvenOddSumDriver extends Configured implements Tool {</p>
+<p>    @Override<br />
+    public int run(String[] args) throws Exception {<br />
+        Configuration conf = getConf();</p>
+<p>        Job job = new Job(conf);<br />
+        job.setJarByClass(EvenOddSumDriver.class);</p>
+<p>        job.setOutputKeyClass(Text.class);<br />
+        job.setOutputValueClass(IntWritable.class);</p>
+<p>        job.setMapperClass(EvenOddSumMapper.class);<br />
+        job.setCombinerClass(EvenOddSumReducer.class);<br />
+        job.setReducerClass(EvenOddSumReducer.class);</p>
+<p>        job.setInputFormatClass(TextInputFormat.class);<br />
+        job.setOutputFormatClass(TextOutputFormat.class);</p>
+<p>        FileInputFormat.setInputPaths(job, new Path(args[0]));<br />
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));</p>
+<p>        return (job.waitForCompletion(true) ? 0 : 1);<br />
+    }</p>
+<p>    public static void main(String[] args) throws Exception {<br />
+        int res = ToolRunner.run(new EvenOddSumDriver(), args);<br />
+        System.exit(res);<br />
+    }<br />
+}<br />
+[/code]</p>
+<p>Textbook example - set classes that represent the mapper and reducer. Start the job and voila. Result should be visible in your output folder. Sample result:<br />
+[code]<br />
+even	8<br />
+odd	5<br />
+[/code]</p>
+<p>Now try it on the larger set. :)</p>

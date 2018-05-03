@@ -1,0 +1,141 @@
+---
+layout: post
+title: Add fee or discount to order/invoice/creditmemo email messages
+date: 2014-07-19 17:17:46.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Magento
+- PHP
+tags:
+- creditmemo
+- discount
+- email
+- fee
+- invoice
+- Magento
+- order
+- PHP
+meta:
+  _wpas_skip_facebook: '1'
+  _wpas_skip_google_plus: '1'
+  _wpas_skip_twitter: '1'
+  _wpas_skip_linkedin: '1'
+  _wpas_skip_tumblr: '1'
+  _wpas_skip_path: '1'
+  _edit_last: '44872122'
+  geo_public: '0'
+  _publicize_pending: '1'
+  _oembed_34d87b2be39130b3543145dcaea3887e: "{{unknown}}"
+  _oembed_f1fd5f01531ce80975ed2683ebef8f8b: "{{unknown}}"
+  _oembed_f4eef8eddb6d59e2297928509a87e292: "{{unknown}}"
+  _oembed_5326b9b7dd0ebaac1090d96100fd718f: "{{unknown}}"
+  _oembed_a9bcd147bc5f75933ffef7e523af9dee: "{{unknown}}"
+  _oembed_7f8943cb05102b468e4bd847d52851e2: "{{unknown}}"
+  _oembed_324ec0cc71e362fcee5aeea61d3b1e72: "{{unknown}}"
+  _oembed_961980b7e59a12ed341db14594a86237: "{{unknown}}"
+  _oembed_882773ea2ad3e728ff6ececdcf41ea24: "{{unknown}}"
+  _oembed_de69c2b761f6ab4bdbefcee6e0a126f8: "{{unknown}}"
+author:
+  login: lurajcevi
+  email: traxdater12@gmail.com
+  display_name: lurajcevi
+  first_name: ''
+  last_name: ''
+---
+<p>In the last few days I have been playing with the functionality of adding another fee to the checkout process. While exploring the topic I stumbled upon a lot of good tutorials for doing exactly that. Namely <a title="this one" href="http://tutorialmagento.com/how-to-add-fee-or-discount-to-order-totals-in-magento">this</a>, and <a href="http://tutorialmagento.com/how-to-add-fee-or-discount-to-order-totals-in-magento"> this</a> one.<br />
+I read them and followed instructions stated there. With some changes, I managed to recreate the functionality I needed. But, while reading the comments for both articles, I saw the main trouble people had with them. The part about showing the fee or discount in email messages of orders, invoices and credit memos was missing (or not implemented), so here is how i did it.<!--more--></p>
+<p>[code lang="xml"]<br />
+&lt;blocks&gt;<br />
+&lt;sales&gt;<br />
+  &lt;rewrite&gt;<br />
+    &lt;order_totals&gt;&lt;!--class name here--&gt;&lt;/order_totals&gt;<br />
+    &lt;order_invoice_totals&gt;&lt;!--class name here--&gt;&lt;/order_invoice_totals&gt;<br />
+    &lt;order_creditmemo_totals&gt;&lt;!--class name here--&gt;&lt;/order_creditmemo_totals&gt;<br />
+  &lt;/rewrite&gt;<br />
+&lt;/sales&gt;<br />
+&lt;/blocks&gt;<br />
+[/code]</p>
+<p>So, in order to do this, you have to rewrite few of the magento blocks (Mage_Sales_Block_Order_Totals, Mage_Sales_Block_Order_Invoice_Totals and Mage_Sales_Block_Order_Creditmemo_Totals).<br />
+If you look at the source for these files, you can see they all have the method named <strong>_initTotals()</strong>. This method is responsible for adding the total values for various things to email, for example subtotal, shipping, discount etc. In order to add your fee to the email message, your <strong>_initTotals()</strong> should look like this (for all your blocks):</p>
+<p>[code lang="php"]<br />
+ /**<br />
+     * Initialize order totals array<br />
+     *<br />
+     * @return Mage_Sales_Block_Order_Totals<br />
+     */<br />
+    protected function _initTotals()<br />
+    {<br />
+        $source = $this-&gt;getSource();</p>
+<p>        $this-&gt;_totals = array();<br />
+        $this-&gt;_totals['subtotal'] = new Varien_Object(array(<br />
+            'code'  =&gt; 'subtotal',<br />
+            'value' =&gt; $source-&gt;getSubtotal(),<br />
+            'label' =&gt; $this-&gt;__('Subtotal')<br />
+        ));</p>
+<p>        /**<br />
+         * Add shipping<br />
+         */<br />
+        if (!$source-&gt;getIsVirtual() &amp;&amp; ((float) $source-&gt;getShippingAmount() || $source-&gt;getShippingDescription()))<br />
+        {<br />
+            $this-&gt;_totals['shipping'] = new Varien_Object(array(<br />
+                'code'  =&gt; 'shipping',<br />
+                'field' =&gt; 'shipping_amount',<br />
+                'value' =&gt; $this-&gt;getSource()-&gt;getShippingAmount(),<br />
+                'label' =&gt; $this-&gt;__('Shipping')<br />
+            ));<br />
+        }</p>
+<p>         /** THIS IS THE ADDED PART<br />
+         * (you should change this according to your naming and db column names)<br />
+         * Add handling fee<br />
+         */<br />
+        if ((float) $this-&gt;getSource()-&gt;getHandlingFeeAmount()) {<br />
+            $this-&gt;_totals['handling_fee'] = new Varien_Object(array(<br />
+                'code'  =&gt; 'handling_fee',<br />
+                'field' =&gt; 'handling_fee_amount',<br />
+                'value' =&gt; $this-&gt;getSource()-&gt;getHandlingFeeAmount(),<br />
+                'label' =&gt; $this-&gt;__('Handling fee')<br />
+            ));<br />
+        }</p>
+<p>        /**<br />
+         * Add discount<br />
+         */<br />
+        if (((float)$this-&gt;getSource()-&gt;getDiscountAmount()) != 0) {<br />
+            if ($this-&gt;getSource()-&gt;getDiscountDescription()) {<br />
+                $discountLabel = $this-&gt;__('Discount (%s)', $source-&gt;getDiscountDescription());<br />
+            } else {<br />
+                $discountLabel = $this-&gt;__('Discount');<br />
+            }<br />
+            $this-&gt;_totals['discount'] = new Varien_Object(array(<br />
+                'code'  =&gt; 'discount',<br />
+                'field' =&gt; 'discount_amount',<br />
+                'value' =&gt; $source-&gt;getDiscountAmount(),<br />
+                'label' =&gt; $discountLabel<br />
+            ));<br />
+        }</p>
+<p>        $this-&gt;_totals['grand_total'] = new Varien_Object(array(<br />
+            'code'  =&gt; 'grand_total',<br />
+            'field'  =&gt; 'grand_total',<br />
+            'strong'=&gt; true,<br />
+            'value' =&gt; $source-&gt;getGrandTotal(),<br />
+            'label' =&gt; $this-&gt;__('Grand Total')<br />
+        ));</p>
+<p>        /**<br />
+         * Base grandtotal<br />
+         */<br />
+        if ($this-&gt;getOrder()-&gt;isCurrencyDifferent()) {<br />
+            $this-&gt;_totals['base_grandtotal'] = new Varien_Object(array(<br />
+                'code'  =&gt; 'base_grandtotal',<br />
+                'value' =&gt; $this-&gt;getOrder()-&gt;formatBasePrice($source-&gt;getBaseGrandTotal()),<br />
+                'label' =&gt; $this-&gt;__('Grand Total to be Charged'),<br />
+                'is_formated' =&gt; true,<br />
+            ));<br />
+        }<br />
+        return $this;<br />
+    }<br />
+[/code]</p>
+<p>Here we are leaving almost everything as it was before, only we are adding another subtotal (our own) to be shown in messages.</p>
+<p>That should do it now. Clear the cache and all that stuff before trying. Cheers.</p>

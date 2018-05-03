@@ -1,0 +1,66 @@
+---
+layout: post
+title: Block caching in Magento
+date: 2014-09-16 12:43:51.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Magento
+- PHP
+tags:
+- block
+- caching
+- Magento
+- PHP
+meta:
+  _wpas_skip_facebook: '1'
+  _wpas_skip_google_plus: '1'
+  _wpas_skip_twitter: '1'
+  _wpas_skip_linkedin: '1'
+  _wpas_skip_tumblr: '1'
+  _wpas_skip_path: '1'
+  _publicize_pending: '1'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _edit_last: '44872122'
+  geo_public: '0'
+  _post_restored_from: a:3:{s:20:"restored_revision_id";i:312;s:16:"restored_by_user";i:44872122;s:13:"restored_time";i:1410864961;}
+author:
+  login: lurajcevi
+  email: traxdater12@gmail.com
+  display_name: lurajcevi
+  first_name: ''
+  last_name: ''
+---
+<p style="text-align:center;"><img src="{{ site.baseurl }}/assets/schema_tuto3.jpg" alt="Magento" align="middle" /></p>
+<p style="text-align:justify;">Everyone knows what a caching is, but to put it simply, it is a mechanism to store (save) data that is frequently accessed but rarely changed in order to have a faster response time.<br />
+So, for example, if we have a block with featured products on our magento homepage, these products should be cached. Without cache, these products would have to be loaded every time the homepage is accessed. Since this is a homepage, it is expected that it will receive a lot of hits, and if things are not properly cached, a lot of time will be wasted on re evaluating the same queries and drawing the same blocks over and over.<br />
+<!--more--></p>
+<p style="text-align:justify;">Enter block caching. Magento provides a very simple way to cache the blocks you have. It is as simple as this:</p>
+<p>[code language="php"]<br />
+  const FEATURED_PRODUCTS_BLOCK_TAG   = &quot;FEATURED_PRODUCTS_TAG&quot;;</p>
+<p>  protected function _construct() {<br />
+    $this-&gt;addData(array(<br />
+      'cache_lifetime'    =&gt; 3600,<br />
+      'cache_tags'        =&gt; array(self::LATEST_PRODUCTS_BLOCK_TAG),<br />
+    ));<br />
+  }<br />
+[/code]</p>
+<p style="text-align:justify;">This code should go to your block class. Two thing we are setting up in here are 'cache_lifetime' and 'cache_tags'.<br />
+Cache lifetime is a period (in seconds) of time for which your block will be cached. After the expiry of this time, first request that comes along will not be served from cache, instead it will go over the longer procedure and that result will then be cached for the next period.<br />
+Cache tags are a special feature. They are optional to set up, but might come in handy sometimes. For example, if we want to clear some of the blocks cached when some situation arises, we can refer to it via tag. Easy way to clean cache by tags is the following:</p>
+<p>[code language="php"]<br />
+  $cache = Mage::app()-&gt;getCache();<br />
+  $cache-&gt;clean(array('TAG 1', 'TAG 2' ...));<br />
+[/code]</p>
+<p style="text-align:justify;">There is one other thing we can do regarding the caching of the blocks. Imagine the following situation:<br />
+You have a website with 2 stores: one for the US and one for the UK. You have the same featured products on both the stores. Here is a problem: when you switch the stores by clicking on the country flag or something, blocks will have to be reevaluated the first time you do this, and saved to cache. This is not a big issue, since it will only happen once, but we can go around it. We can use 'cache_key'.<br />
+By adding a 'cache_key' like this:</p>
+<p>[code language="php"]<br />
+'cache_key' =&gt; 'SOME_CACHE_KEY_THAT HAS TO BE UNIQUE'<br />
+[/code]</p>
+<p style="text-align:justify;">we make sure that the same block is cached across all the stores (even if you have 10 of them). But keep in mind that this key has to be unique and the cached block is not able to have any modifications (messages on different language, translation, etc.).</p>
+<p style="text-align:justify;">Hope this was helpful. Cheers.</p>

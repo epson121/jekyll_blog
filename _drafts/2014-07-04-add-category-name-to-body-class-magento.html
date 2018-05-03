@@ -1,0 +1,43 @@
+---
+layout: post
+title: Add category name to body class - Magento
+date: 2014-07-04 11:47:58.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Magento
+- PHP
+tags:
+- body class
+- category name body
+- Magento
+- PHP
+meta:
+  _edit_last: '44872122'
+  geo_public: '0'
+  _publicize_pending: '1'
+author:
+  login: lurajcevi
+  email: traxdater12@gmail.com
+  display_name: lurajcevi
+  first_name: ''
+  last_name: ''
+---
+<p>Sometimes you would like to customize the page depenfing on the category. For example, you would like to change the header picture or change other things.</p>
+<p>In order to do this, you should add the next code snippet:</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+<span class="re0">$class</span> <span class="sy0">=</span> <span class="st_h">''</span><span class="sy0">;</span>
+<span class="re0">$currentCategory</span> <span class="sy0">=</span> Mage<span class="sy0">::</span><span class="me2">registry</span><span class="br0">(</span><span class="st_h">'current_category'</span><span class="br0">)</span><span class="sy0">;</span>
+
+<span class="kw1">if</span> <span class="br0">(</span><span class="re0">$currentCategory</span><span class="br0">)</span> <span class="br0">{</span>
+    <span class="re0">$parentCategories</span> <span class="sy0">=</span> <span class="re0">$currentCategory</span><span class="sy0">-&gt;</span><span class="me1">getParentCategories</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="re0">$topCategory</span> <span class="sy0">=</span> <a href="http://www.php.net/reset"><span class="kw3">reset</span></a><span class="br0">(</span><span class="re0">$parentCategories</span><span class="br0">)</span><span class="sy0">;</span>
+    <span class="re0">$class</span> <span class="sy0">.=</span> <span class="re0">$topCategory</span><span class="sy0">-&gt;</span><span class="me1">getUrlKey</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span>
+<span class="br0">}</span>
+<span class="sy1">?&gt;</span></pre>
+<p>to the <code>/template/page/1column.phtml</code> or <code>/template/page/2columns-left.phtml</code> or any other (where you want it).</p>
+<p>Next, append the <code>$addClass</code> variable to the body class like this:</p>
+<pre>&lt;body <span class="kw2">&lt;?php</span> <span class="kw1">echo</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">getBodyClass</span><span class="br0">(</span><span class="br0">)</span>?<span class="st_h">' class="'</span><span class="sy0">.</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">getBodyClass</span><span class="br0">(</span><span class="br0">)</span> <span class="sy0">.</span> <span class="st0">" "</span> <span class="sy0">.</span> <span class="re0">$class</span> <span class="sy0">.</span> <span class="st_h">'"'</span><span class="sy0">:</span><span class="st_h">''</span> <span class="sy1">?&gt;</span> &gt;</pre>

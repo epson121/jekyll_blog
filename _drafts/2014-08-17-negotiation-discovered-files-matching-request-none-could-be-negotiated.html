@@ -1,0 +1,38 @@
+---
+layout: post
+title: 'Negotiation: discovered file(s) matching request: <> (None could be negotiated).'
+date: 2014-08-17 21:19:24.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Apache
+- Magento
+- PHP
+- Virtual Host
+tags:
+- Apache
+- matching request
+- negotiation
+meta:
+  _publicize_pending: '1'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _wpas_skip_facebook: '1'
+  _wpas_skip_google_plus: '1'
+  _wpas_skip_twitter: '1'
+  _wpas_skip_linkedin: '1'
+  _wpas_skip_tumblr: '1'
+  _wpas_skip_path: '1'
+  _edit_last: '44872122'
+  geo_public: '0'
+author:
+  login: lurajcevi
+  email: traxdater12@gmail.com
+  display_name: lurajcevi
+  first_name: ''
+  last_name: ''
+---
+<p>I had this error on my local apache server. While trying to invoke some Magento API,apache log showed this error. To get rif of it, simply remove the "MultiViews" part in you apache virtualhost file. For me it was in "/etc/apache2/sites-enabled/&lt;&gt;", and that should be it.</p>

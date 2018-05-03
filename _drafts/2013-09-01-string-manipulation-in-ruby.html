@@ -1,0 +1,169 @@
+---
+layout: post
+title: String manipulation in Ruby
+date: 2013-09-01 14:55:33.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Ruby
+tags:
+- EOM
+- methods
+- ruby
+- string
+- string interpolation
+- string query
+- strings
+- substring
+meta:
+  _edit_last: '44872122'
+  _publicize_pending: '1'
+author:
+  login: lurajcevi
+  email: traxdater12@gmail.com
+  display_name: lurajcevi
+  first_name: ''
+  last_name: ''
+excerpt: Strings in Ruby are, just like in other programming languages, objects for
+  handling text.  If you ever tried to write some Ruby code, you are familiar with
+  them and their syntax. But this post is not about syntax that is well known. While
+  reading through some ruby books and tutorials I found some pretty interesting ways
+  of dealing with strings.
+---
+<p>Strings in Ruby are, just like in other programming languages, objects for handling text.  If you ever tried to write some Ruby code, you are familiar with them and their syntax.</p>
+<p>[code lang="ruby"]</p>
+<p>&quot;This is a double-quoted string.&quot;</p>
+<p>'This is a single-quoted one.'</p>
+<p>[/code]</p>
+<p>Simple. :)</p>
+<p>But this post is not about syntax that is well known. While reading through some ruby books and tutorials I found some pretty interesting ways of dealing with strings.</p>
+<p><!--more--></p>
+<h3><strong>String creation</strong></h3>
+<p>Strings can be made, besides using single or double quotes, with notation like this one:</p>
+<p>[code lang="ruby"]</p>
+<p>%char{text}</p>
+<p>[/code]</p>
+<p>Here, char is replaced by one of these characters:</p>
+<ul>
+<li>q - for single-quoted strings,</li>
+<li>Q for double-quoted or</li>
+<li><em>char </em>can be omitted to also create double-quoted strings.</li>
+</ul>
+<p>[code lang="ruby"]</p>
+<p>&gt;&gt; %q{Single quoted string.}<br />
+=&gt; 'Single quoted string.'<br />
+&gt;&gt; %Q{Double quoted string.}<br />
+=&gt; &quot;Double quoted string.&quot;<br />
+&gt;&gt; %{Double quoted string.}<br />
+=&gt; &quot;Double quoted string.&quot;<br />
+[/code]</p>
+<p>Also, we can replace the curly braces with any other character and still get the string object, like this.</p>
+<p>[code lang="ruby"]<br />
+&gt;&gt; %q[String with square braces.]<br />
+=&gt; &quot;String with square braces.&quot;<br />
+&gt;&gt; %q-String with minuses-<br />
+=&gt; &quot;String with minuses&quot;<br />
+[/code]</p>
+<h3><strong>multiline strings</strong></h3>
+<p>Sometimes you want your strings to span across multiple lines..maybe.. Fortunately this also can be easily done in Ruby. Syntax is as follows:</p>
+<p>[code lang="ruby"]<br />
+&gt;&gt; string = &lt;&lt;EOM<br />
+Line1<br />
+Line2<br />
+Line3<br />
+EOM<br />
+=&gt; &quot;Line1\nLine2\nLine3\n&quot;<br />
+[/code]</p>
+<p>Key thing is the &lt;&lt; operator. Using it with the uppercase text (like EOM, which means <em>End of message,</em> but any other works too) at the end of the first line you have the ability to type your text across as many lines as you wish, until you hit another EOM again (or any other word of your choosing). EOM has to be on its own line, flushed left, alone.</p>
+<p>By default, text entered between EOM strings is read in double-quoted strings. For reading the text in single-quoted strings you need to do something like this:</p>
+<p>[code lang="ruby"]<br />
+string = &lt;&lt;'EOM'<br />
+Line1<br />
+Line2<br />
+Line3<br />
+EOM<br />
+=&gt; &quot;Line1\nLine2\nLine3\n&quot;<br />
+[/code]</p>
+<p>String is now enclosed in single quotes.</p>
+<h3><strong>substrings</strong></h3>
+<p>To access a character in Ruby string, you usually do something like this:</p>
+<p>[code lang="ruby"]<br />
+&gt;&gt; a = &quot;String&quot;<br />
+&gt;&gt; a[0]<br />
+=&gt; 83<br />
+[/code]</p>
+<p>But to get a substring of, say, 3 letters from the string above we simply do:</p>
+<p>[code lang="ruby"]<br />
+&gt;&gt; a = &quot;String&quot;<br />
+&gt;&gt; a[0, 3]<br />
+=&gt; &quot;Str&quot;<br />
+[/code]</p>
+<p>where the second argument to [] method is number of letters to grab starting at the number in first argument. There is also a well known method like slice()</p>
+<h3><strong>string interpolation</strong></h3>
+<p>Interpolating string means putting an existing string into a new string, like this:</p>
+<p>[code lang="ruby"]<br />
+&gt;&gt; a = &quot;String&quot;<br />
+&gt;&gt; b = &quot;Are you a #{a}?&quot;<br />
+=&gt; &quot;Are you a String?&quot;<br />
+[/code]</p>
+<p>By using #{expression} notation, we can embed any Ruby expression inside new string. Here is a fun example:</p>
+<p>[code lang="ruby"]</p>
+<p>&gt;&gt; a = &quot;I am #{class User<br />
+ attr_accessor :name<br />
+ end<br />
+ n = User.new()<br />
+ n.name = &quot;Frodo Baggins&quot;<br />
+ n.name<br />
+ }&quot;</p>
+<p>&gt;&gt; puts a<br />
+=&gt; &quot;I am Frodo Baggins.&quot;</p>
+<p>[/code]</p>
+<p>Cool, right? :)</p>
+<h3><strong>Querying strings</strong></h3>
+<p>We can query string using built-in methods to find its content, for example, counting the letters in string:</p>
+<p>[code lang="ruby"]<br />
+&gt;&gt; a = &quot;This is string.&quot;<br />
+&gt;&gt; a.count(&quot;i&quot;)<br />
+=&gt; 3<br />
+&gt;&gt; a.count(&quot;is&quot;)<br />
+=&gt; 6<br />
+[/code]</p>
+<p>Count the letters in range:</p>
+<p>[code lang="ruby"]<br />
+&gt;&gt; a = &quot;This is string.&quot;<br />
+&gt;&gt; a.count(&quot;a-i&quot;)<br />
+=&gt; 5<br />
+[/code]</p>
+<p>Or count all the letters, except the given ones:</p>
+<p>[code lang="ruby"]<br />
+&gt;&gt; a = &quot;This is string.&quot;<br />
+&gt;&gt; a.count(&quot;^is&quot;)<br />
+=&gt; 9<br />
+&gt;&gt; a.count(&quot;^a-i&quot;)<br />
+=&gt; 10<br />
+[/code]</p>
+<p>You can also combine letters and ranges, along with query chaining:</p>
+<p>[code lang="ruby"]<br />
+&gt;&gt; a = &quot;This is string.&quot;<br />
+&gt;&gt; a.count(&quot;sa-i&quot;)<br />
+=&gt; 8<br />
+&gt;&gt; a.count(&quot;sa-i&quot;, &quot;^hg&quot;)<br />
+=&gt; 6<br />
+[/code]</p>
+<h3><strong>string transformations</strong></h3>
+<p>You can easily change case of you string by using</p>
+<p>[code lang="ruby"]upcase, downcase and swapcase[/code]</p>
+<p>methods.</p>
+<p>[code lang="ruby"]<br />
+&gt;&gt; a = &quot;This is string.&quot;<br />
+&gt;&gt; a.upcase<br />
+=&gt; &quot;THIS IS STRING.&quot;<br />
+&gt;&gt; a.downcase<br />
+=&gt; &quot;this is string.&quot;<br />
+&gt;&gt; a.swapcase<br />
+=&gt; &quot;tHIS IS STRING.&quot;<br />
+[/code]</p>
+<p>There are so many interesting methods and techniques in Ruby regarding the string manipulation. This was only a portion of it. I will try to write a sequel to this and add many more examples.</p>

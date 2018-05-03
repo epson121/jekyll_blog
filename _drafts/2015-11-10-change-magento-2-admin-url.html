@@ -1,0 +1,32 @@
+---
+layout: post
+title: Change Magento 2 admin url
+date: 2015-11-10 21:16:28.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Magento2
+tags:
+- admin
+- maagento2
+- magento 2
+- url
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '16729262066'
+author:
+  login: lurajcevi
+  email: traxdater12@gmail.com
+  display_name: lurajcevi
+  first_name: ''
+  last_name: ''
+---
+<p>If you're like me, you probably just fly through the Magento 2 installation, without actually reading anything.</p>
+<p>Usually, this is not an issue (especially if you've done it several times), but recently Magento has an addition when creating an administration url. What this means is that administration is no more placed under domain_name/admin. Instead, it has a random string attached to it, like domain_name/admin_random_string.</p>
+<p>So if, at the end of installation, you're banging your head at the table cursing yourself for being so "confident", fear not. There is a simple way to change/find out the real url.</p>
+<p>Open the "app/etc/env.php" file, and change the "frontname"'s key value to "admin". That's it.</p>
+<p>Cheers.</p>

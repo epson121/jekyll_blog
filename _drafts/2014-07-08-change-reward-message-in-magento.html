@@ -1,0 +1,38 @@
+---
+layout: post
+title: Change reward message in magento
+date: 2014-07-08 12:59:32.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Magento
+tags:
+- Magento
+- PHP
+- reward mesage
+meta:
+  _wpas_skip_facebook: '1'
+  _wpas_skip_google_plus: '1'
+  _wpas_skip_twitter: '1'
+  _wpas_skip_linkedin: '1'
+  _wpas_skip_tumblr: '1'
+  _wpas_skip_path: '1'
+  _edit_last: '44872122'
+  geo_public: '0'
+  _publicize_pending: '1'
+author:
+  login: lurajcevi
+  email: traxdater12@gmail.com
+  display_name: lurajcevi
+  first_name: ''
+  last_name: ''
+---
+<p>Reward messages in magento are not coming from database. They are not coming from configuration in admin. They are not set in blocks nor templates. So where are they then?</p>
+<p>If you want to change the reward message open up the <strong><em>reward.xml</em></strong> file in your theme and look for lines like this one:</p>
+<p>[code language="xml"]<br />
+&lt;action method=&quot;setRewardMessage&quot; translate=&quot;message&quot; module=&quot;enterprise_reward&quot;&gt;<br />
+  &lt;message&gt;Submit a new tag now and earn %s once the tag is approved.&lt;/message&gt;<br />
+&lt;/action&gt;[/code]</p>

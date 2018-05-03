@@ -1,0 +1,143 @@
+---
+layout: post
+title: Simple markdown editor in Ember.js
+date: 2013-10-09 16:53:02.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- emberjs
+tags:
+- ember
+- emberjs
+- markdown
+meta:
+  _edit_last: '44872122'
+  _publicize_pending: '1'
+  _post_restored_from: a:3:{s:20:"restored_revision_id";i:178;s:16:"restored_by_user";i:44872122;s:13:"restored_time";i:1389280691;}
+author:
+  login: lurajcevi
+  email: traxdater12@gmail.com
+  display_name: lurajcevi
+  first_name: ''
+  last_name: ''
+---
+<p>Recently I have been playing with Ember.js. It is a javascript front-end framework for developing web applications. You can find more details and really thorough guides on their <a href="http://emberjs.com/">website</a>.<br />
+As my new blog post, I have decided to create a tutorial for building a simple markdown editor (in ember). Markdown, for those unaware of it, is a simple, lightweight markup language. I use it a lot for my github readme pages. While there are several great applications for editing markdown in real time out there, I thought it would be a good exercise to create one of my own, and since this is really easy to do in ember, I am showing it as a simple tutorial.</p>
+<p><!--more--></p>
+<p>First thing you should do is download a <a href="https://github.com/emberjs/starter-kit/archive/v1.0.0.zip">starter kit</a> from ember.js website. It has all the files we need. You can download it here.</p>
+<p>Structure:</p>
+<p>Ember.js application has a conventional structure of directories and files. It looks something like this:</p>
+<p>/App/<br />
+--&gt; /css<br />
+--&gt; /js<br />
+--&gt; /js/libs<br />
+--&gt; index.html</p>
+<p>index.html is our projects main html file. In there you put all your html code. If you have downloaded starter pack, you should have all the files (including index.html) ready to go. So lets add a skeleton html code of our application (delete everything from index.html and put this code in).</p>
+<p>[code language="html"]</p>
+<p>&lt;meta charset=&quot;utf-8&quot; /&gt;<br />
+Ember Starter Kit<br />
+			&lt;link href=&quot;css/normalize.css&quot; rel=&quot;stylesheet&quot; /&gt;<br />
+			&lt;link href=&quot;css/style.css&quot; rel=&quot;stylesheet&quot; /&gt;<br />
+			&lt;link href=&quot;http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css&quot; rel=&quot;stylesheet&quot; /&gt;&lt;/pre&gt;<br />
+&lt;div class=&quot;navbar&quot;&gt;<br />
+&lt;div class=&quot;navbar-inner&quot;&gt;<br />
+        &lt;a class=&quot;brand&quot; href=&quot;#&quot;&gt;<br />
+          Markup editor<br />
+        &lt;/a&gt;&lt;/div&gt;<br />
+&lt;/div&gt;<br />
+&lt;div class=&quot;row&quot;&gt;&lt;/div&gt;<br />
+&lt;pre&gt;</p>
+<p>[/code]</p>
+<p>This is our starting point. Notice I am using twitter bootstrap for design and styling. Also style.css and normalize.css are added as stylesheets for this application. style.css is where your custom css goes, normalize.css is embers default css and comes with starter kit.</p>
+<p>You can add this into your style.css file:</p>
+<p>[code language="css"]<br />
+html, body {<br />
+    margin: 20px;<br />
+}</p>
+<p>.active {<br />
+	font-weight: bold;<br />
+}</p>
+<p>[name=&quot;input&quot;] {<br />
+	width: 100%;<br />
+	height: 500px;<br />
+	resize: none;<br />
+}<br />
+[/code]</p>
+<p>In your js/ directory, as you'll probably notice, you have app.js file and lib/ folder. Lib folder holds all your dependencies for the application you are building. There is ember file, jquery library and handlebars.js.</p>
+<p>Handlebars is a templating library that lets you embed your handlebars expressions directly into html file. For more information, check out the handlebars webpage.<br />
+app.js file is where your javascript goes, that is, your application logic and interaction with models. So in your app.js file put this code (delete everything from app.js if it is not empty):</p>
+<p>[code language="javascript"]</p>
+<p>App = Ember.Application.create();</p>
+<p>var showdown = new Showdown.converter();</p>
+<p>Ember.Handlebars.helper('format-markdown', function(input) {<br />
+  if (input == undefined)<br />
+    return &quot;&quot;;<br />
+	return new Handlebars.SafeString(showdown.makeHtml(input));<br />
+});<br />
+[/code]</p>
+<p>What we have done here is this:<br />
+We have created an emberjs application using the</p>
+<p>[code language="javascript"]<br />
+App = Ember.Application.create();<br />
+[/code]</p>
+<p>Next thing we do is create a showdown variable that holds a reference to Showdown converter. Showdown converter is a javascript port of markdown language and it enables us to easily write and display markdown.</p>
+<p>Then we use this reference of showdown and create a helper function that will convert our markdown input and display it properly. We have to check for undefined value and return an empty string because we get an error when there is no markdown for converting. And that is all of our javascript. Now back to html.</p>
+<p>First thing we should do is include our javascript dependencies into html file. Add this to the end of your html (just before the closing body tag):</p>
+<p>[code language="html"]<br />
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/libs/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;js/libs/handlebars-1.0.0.js&quot;&gt;&lt;/script&gt;<br />
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/libs/ember-1.0.0.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js&quot;&gt;&lt;/script&gt;<br />
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/app.js&quot;&gt;&lt;/script&gt;[/code]</p>
+<p>This includes all our dependencies like ember, jquery or showdown.js. Next thing we should do is create a textarea where our markdown is going to be written. Add this to your html file:</p>
+<p>[code language="html"]&lt;script id=&quot;md&quot; type=&quot;text/x-handlebars&quot;&gt;<br />
+    {{textarea name=&quot;input&quot; value=input placeholder=&quot;Enter your markdown here. It will automatically be translated.&quot;}}</p>
+<p>&gt;&lt;/script&gt;<br />
+[/code]</p>
+<p>This is the <em>handlebars expression</em> for templating, mentioned earlier. We add a <em>textarea</em> template with few attributes like <em>name</em>, <em>value</em> and <em>placeholder</em>. We are now going to use our template and embed it with the rest of the html we have written earlier.</p>
+<p>Edit your html file like this:</p>
+<p>[code language="html"]<br />
+&lt;script type=&quot;text/x-handlebars&quot;&gt;</p>
+<p>&lt;div class=&quot;navbar&quot; &gt;</p>
+<p>&lt;div class=&quot;navbar-inner&quot;&gt;<br />
+        &lt;a class=&quot;brand&quot; href=&quot;#&quot;&gt;Markup editor &lt;/a&gt;&lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;div class=&quot;row&quot;&gt;</p>
+<p>&lt;div class=&quot;span6&quot; &gt;<br />
+        {{partial 'md'}}&lt;/div&gt;</p>
+<p>&lt;div class=&quot;span6&quot; style=&quot;border:1px solid black;height:500px;padding:3px;word-break: break-all;&quot;&gt;<br />
+        {{format-markdown input}}&lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&gt;&lt;/script&gt;<br />
+[/code]</p>
+<p>We have surrounded our html with tag containing special attribute: <em>text/x-handlebars</em>. To use handlebars templates, they need to be inside script tag.<br />
+We have added a <em>partial</em> (our textarea template) and a <em>format-markdown</em> template with <em>input</em> as a parameter. If you check out our app.js file, you'll notice that we have defined a helper called <em>format-markdown</em> and it takes one argument and converts it. As you'll also notice, that same name (ie. <em>input</em>) is the value attribute of our textarea, so everything that gets written into textarea will be shown in div right next to it, but it will be converted.</p>
+<p>Your final index.html should look like this:</p>
+<p>[code language="html"]</p>
+<p>&lt;meta charset=&quot;utf-8&quot; /&gt;<br />
+Ember Starter Kit<br />
+  	&lt;link href=&quot;css/normalize.css&quot; rel=&quot;stylesheet&quot; /&gt;<br />
+  	&lt;link href=&quot;css/style.css&quot; rel=&quot;stylesheet&quot; /&gt;<br />
+  	&lt;link href=&quot;http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css&quot; rel=&quot;stylesheet&quot; /&gt;</p>
+<p>&lt;script type=&quot;text/x-handlebars&quot;&gt;</p>
+<p>&lt;div class=&quot;navbar&quot; &gt;</p>
+<p>&lt;div class=&quot;navbar-inner&quot;&gt;<br />
+        &lt;a class=&quot;brand&quot; href=&quot;#&quot;&gt;Markup editor &lt;/a&gt;&lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&lt;div class=&quot;row&quot;&gt;</p>
+<p>&lt;div class=&quot;span6&quot; &gt;<br />
+        {{partial 'md'}}&lt;/div&gt;</p>
+<p>&lt;div class=&quot;span6&quot; style=&quot;border:1px solid black;height:500px;padding:3px;word-break: break-all;&quot;&gt;<br />
+        {{format-markdown input}}&lt;/div&gt;</p>
+<p>&lt;/div&gt;</p>
+<p>&gt;&lt;/script&gt;</p>
+<p>&lt;script id=&quot;md&quot; type=&quot;text/x-handlebars&quot;&gt;<br />
+    {{textarea name=&quot;input&quot; value=input placeholder=&quot;Enter your markdown here. It will automatically be translated.&quot;}}</p>
+<p>&gt;&lt;/script&gt;</p>
+<p>&lt;script type=&quot;text/javascript&quot; src=&quot;js/libs/jquery-1.9.1.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;js/libs/handlebars-1.0.0.js&quot;&gt;&lt;/script&gt;<br />
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/libs/ember-1.0.0.js&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js&quot;&gt;&lt;/script&gt;<br />
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/app.js&quot;&gt;&lt;/script&gt;</p>
+<p>[/code]</p>
+<p>And that would be all. You now have your own markup editor. :)<br />
+This code is also available at <a href="https://github.com/epson121/ember-markdown">github</a>.</p>

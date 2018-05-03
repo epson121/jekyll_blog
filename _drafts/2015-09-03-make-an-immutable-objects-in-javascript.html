@@ -1,0 +1,62 @@
+---
+layout: post
+title: Make an immutable objects in javascript
+date: 2015-09-03 21:44:33.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- javascript
+tags:
+- immutable
+- javascript
+- objects
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '14401802583'
+  _thumbnail_id: '397'
+author:
+  login: lurajcevi
+  email: traxdater12@gmail.com
+  display_name: lurajcevi
+  first_name: ''
+  last_name: ''
+---
+<p>Cool thing I ran into when watching Douglas Crockford's talk on "Javascript: the good parts" was a different way of creating objects, with lot more options than usual way I was doing it. More specifically, I found it interesting to see that we can set certain properties as non-writeable ie. immutable.</p>
+<p><!--more--></p>
+<p>So what I do usually when creating an object is this:</p>
+<p><code><br />
+var obj = {"foo": 1};<br />
+// Object {foo: 1}<br />
+obj.foo;<br />
+// 1<br />
+obj.foo = 2;<br />
+// 2<br />
+obj.foo<br />
+// 2<br />
+// and we've successfully changed object property<br />
+</code></p>
+<p>How about making it non-writeable? Here is the code from Douglas' talk:</p>
+<p><code><br />
+var obj = Object.defineProperties(<br />
+            Object.create(Object.prototype), {<br />
+                           "foo" : {<br />
+                                value: 1,<br />
+                                <strong>writeable</strong>: false<br />
+                            }<br />
+            }<br />
+          );<br />
+// Object {foo: 1}<br />
+obj.foo<br />
+// 1<br />
+obj.foo = 2<br />
+// 2<br />
+obj.foo<br />
+// 1<br />
+</code></p>
+<p>Besides "writeable" we can change enumerable (could this object/property be a part of for..in loop) and configurable (could this object/property be deleted)</p>
+<p>Fun stuff..</p>
+<p>Cheers..</p>

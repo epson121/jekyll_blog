@@ -1,0 +1,55 @@
+---
+layout: post
+title: ''
+date: 
+type: post
+parent_id: '0'
+published: false
+password: ''
+status: draft
+categories:
+- Ruby
+tags: []
+meta:
+  _edit_last: '44872122'
+  geo_public: '0'
+author:
+  login: lurajcevi
+  email: traxdater12@gmail.com
+  display_name: lurajcevi
+  first_name: ''
+  last_name: ''
+---
+<p>We are all aware of the Magento codebase size and its complexity. That is one of the reasons most people use full-fledged IDEs for Magento programming. Most answers regarding the "what IDE should I be using for magento?" or "what is the best magento development environment?" include big boys like NetBeans, Eclipse and PhpStorm. Since you've already read the title, you may be wondering: "what can a text editor like sublime offer me for my magento development?". Vanilla installation? Not much, but with the help of a few plug-ins, well... Keep reading and you just may be in for a treat.</p>
+<p>Package manager</p>
+<p>If you've ever used Sublime text you have probably stumbled upon its package manager. It is a great tool that lets us choose from hundreds of available plug-ins and install them in no time. This is the foundation for sublime customization, and you should install this immediately. After we've installed it, we have access to hundreds of awesome plug-ins. But which ones should you choose? Which ones are good for magento/php/general development? Here are the ones I use for my day-to-day development.</p>
+<p>CTags</p>
+<p>So, you're accustomed to the "click to go to definition" functionality that most IDEs give you. Unfortunately Sublime text does not have this feature. But package manager is here to help. What CTags does is it generates an index file of language objects (eg. method names, class names etc.) and allows for them to be easily located. After you've installed it from the package manager (and read the installation instructions on github), you should build your tags.<br />
+The way to do that is through "Find&gt;CTags&gt;Rebuild Tags" menu item, but I prefer a key bind. To add a key bind add this in your sublime-keymap file (Preferences &gt; Key Bindings User):</p>
+<p>[ { "keys": ["alt+shift+c"], "command": "rebuild_tags" }, { "keys": ["alt+shift+v"], "command": "navigate_to_definition"} ]</p>
+<p>Now you can build your tags by pressing alt+shift+c, or any other key combination you want. After some time, CTags will build your tags and you can start to harness their power. How? Just place your text cursor on the class or method name, press the key combination for 'navigate to definition' command and the class will be automatically opened. As for the methods, if their name is unique, they will also be automatically opened, but if there are more methods with the same name, they will be shown in a list so you can choose where to go. CTags is a great package to have in order to improve your coding speed.</p>
+<p>SublimeLinter</p>
+<p>Don't you hate it when you code for some time and refresh the browser only to find you have at least 5 syntax errors (missing semicolons or the infamous Paamayim Nekudotayim error)? "This would not happen if I was using Eclipse.", you might say. Don't give up yet, there is a cure for this problem too, and it's called SublimeLinter. It supports many languages out of the box, including PHP so it is a great tool in our toolbelt. In order to make it work, you have to add a path to php installation in its configuration. In my case it was this:</p>
+<p>"sublimelinter_executable_map": { "php":"/usr/bin/php" }</p>
+<p>Try to make an error now, and sublime will greet you with a red error mark and the explanation of the error in the status bar.</p>
+<p>XMLLinter</p>
+<p>Magento uses a lot of XML (a lot!). Before I found out about this plugin I used to spend hours debugging even the silliest xml syntax errors. Missing the closing tag, misspelled tag name etc. It was really a pain. But fortunately we have a plugin for that, too. (https://github.com/SublimeLinter/SublimeLinter-xmllint). You are now able to detect errors in XML files.</p>
+<p>So far so good.</p>
+<p>PHP snippets</p>
+<p>Sublime text already has a lot of PHP code snippets out of the box, but few more always come in handy: Additional PHP Snippets and PHP Completions Kit are good enough. One thing I should like to point is that I had some trouble with triggering the snippets in .phtml files. The solution was to change the "auto_complete_selector" default configuration value, ie. place this "auto_complete_selector": "source, text" into your 'Preferences.sublime-settings' file, and it should work. You want an "if" statement in your .phtml? No problem. Start typing. Poof.</p>
+<p>&nbsp;</p>
+<p>XDebug</p>
+<p>If you use a debugger while developing, you should look into packages for that this (https://github.com/martomo/SublimeTextXdebug) or maybe this(https://github.com/Kindari/SublimeXdebug) one. sublime-magento This is a plugin that I have been contributing to. It has some really nice features like: inserting the proper class name (so you dont have to type it yourself) opening file within quotes (especially useful for template paths) creating a module (insert module name and it will be created) and some code snippets.</p>
+<p>With these packages in your arsenal, you are good to go. You have the power to tackle even the hardest magento related tasks. But let's not wrap this up yet. We are developers, and we like to have a clean and neat code. Also, we like our development environment to look good (if not awesome), so here are few more plugins you should really look into because they provide for a much better programming experience in Sublime Text.</p>
+<p>AdvancedNewFile</p>
+<p>Pretty neat plugin that allows you to easily create files within your project. No need to touch your mouse. Just place a key bind. I have it like this:</p>
+<p>{ "keys": ["shift+alt+n"], "command": "advanced_new_file_new"}</p>
+<p>SidebarEnhancements</p>
+<p>Out of the box sublime does not come with a lot of options in context menu of right click. In order to fix that, you should use this plugin. It provides enhancements to the operations on Sidebar of Files and Folders, and it's really cool.</p>
+<p>GoToDocumentation</p>
+<p>If you are not really familiar with PHP standard library, or simply have trouble remembering the order of the parameters in a function call, you should consider using this plugin. Place your cursor over the method name, press the designated key, and documentation page should open up in your browser, be it PHP, HTML, CSS or any other supported language.</p>
+<p>Trailing Spaces</p>
+<p>I really hate trailing space in code, and so should you. Whitespace is evil. With this plugin you will be able to detect and delete it in a matter of seconds. CAUTION: other developers in your team probably don't care about this so you may start hating them too.</p>
+<p>Git/Github packages</p>
+<p>If you use git without a command line, you could use the Git and Github Tools plugins. Just search for them in package manager. Syntax Highlight and themes Even though the default syntax highlighting in Sublime is pretty good (monokai theme), you can always find something that suits you better. I really like the Phix color scheme (https://github.com/stuartherbert/sublime-phix-color-scheme) and the SODA Dark theme (http://buymeasoda.github.io/soda-theme/).</p>
+<p>There are a lot of other tips and tricks for Sublime text, but let's leave them for some other time.</p>
