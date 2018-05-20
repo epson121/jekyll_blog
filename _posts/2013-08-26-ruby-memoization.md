@@ -3,10 +3,6 @@ layout: post
 title: Ruby memoization
 date: 2013-08-26 13:47:19.000000000 +00:00
 type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - Ruby
 tags:
@@ -18,6 +14,7 @@ excerpt: "I've been going through Ruby Best Practices book lately and, while it 
   a lot of interesting topics, one thing caught my eye. It was sub-chapter about memoization.\r\n\r\nMemoization
   is an optimization technique used to speed up your programs by avoiding to repeat
   function calls for already calculated inputs."
+author: luka
 ---
 I've been going through <a href="http://www.amazon.com/Ruby-Best-Practices-Gregory-Brown/dp/0596523009">Ruby Best Practices</a> book lately and, while it covers a lot of interesting topics, one thing caught my eye. It was sub-chapter about <a href="http://en.wikipedia.org/wiki/Memoization">memoization</a>.
 Memoization is an optimization technique used to speed up your programs by avoiding to repeat function calls for already calculated inputs. Example in the book was a simple Fibonacci sequence program written with and without memoization. It was really shocking for me to see how big of an advantage memoization gives you. I rewrote the examples and made some benchmarks to see the actual results and improvements.

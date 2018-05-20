@@ -1,0 +1,11 @@
+luka:
+  name: Luka Rajcevic
+  twitter: lurajcevi
+author:
+  links:
+    - title: Twitter
+      url: https://twitter.com/lurajcevi
+      icon: fab fa-twitter-square
+    - title: GitHub
+      url: https://github.com/epson121
+      icon: fab fa-github-square
