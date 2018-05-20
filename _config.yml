@@ -17,7 +17,7 @@ google_fonts:
 
 # pagination
 paginate: 5
-paginate_path: /:num/
+paginate_path: /page:num/
 
 # taxonomy pages
 category_archive_path: "/categories/#"
