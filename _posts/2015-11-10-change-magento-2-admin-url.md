@@ -2,11 +2,9 @@
 layout: post
 title: Change Magento 2 admin url
 date: 2015-11-10 21:16:28.000000000 +00:00
-type: post
 categories:
 - Magento2
-author:
-  display_name: luka
+author: luka
 ---
 If you're like me, you probably just fly through the Magento 2 installation, without actually reading anything. Usually,
 this is not an issue (especially if you've done it several times), but recently Magento has an addition with creating an

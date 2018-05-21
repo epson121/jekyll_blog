@@ -2,11 +2,9 @@
 layout: post
 title: Change reward message in magento
 date: 2014-07-08 12:59:32.000000000 +00:00
-type: post
 categories:
 - Magento
-author:
-  display_name: luka
+author: luka
 ---
 Reward messages in magento are not coming from database. They are not coming from configuration in admin. They are not set
 in blocks nor templates. So where are they then?

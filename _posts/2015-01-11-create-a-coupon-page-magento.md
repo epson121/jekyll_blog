@@ -4,13 +4,12 @@ title:  "Create a coupon page in Magento"
 date:   2015-01-11 18:13:18 +0000
 categories:
 - Magento
-excerpt: "![alt text](https://lurajcevi.files.wordpress.com/2015/01/coupon-graphic.gif?w=300)
-
-Wouldn't it be great if you could show all your coupons to customers on one page? This way they would know where to search for the coupons, and coupons would come from a reliable source - you. Also, you could advertise this page and get more customers to sign up because, well, you offer coupons only for registered customers. ^^
+author: luka
+image:
+    path: http://via.placeholder.com/1600x50/a/a
+excerpt: "Wouldn't it be great if you could show all your coupons to customers on one page? This way they would know where to search for the coupons, and coupons would come from a reliable source - you. Also, you could advertise this page and get more customers to sign up because, well, you offer coupons only for registered customers. ^^
 How would we go about doing something like this?"
 ---
-![alt text](https://lurajcevi.files.wordpress.com/2015/01/coupon-graphic.gif?w=300){: .center-image }
-
 Wouldn't it be great if you could show all your coupons to customers on one page? This way they would know where to search for the coupons, and coupons would come from a reliable source - you. Also, you could advertise this page and get more customers to sign up because, well, you offer coupons only for registered customers. ^^
 How would we go about doing something like this?
 

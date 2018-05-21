@@ -2,12 +2,10 @@
 layout: post
 title: bitcoinjs-lib in Meteor.js
 date: 2015-11-24 21:28:09.000000000 +00:00
-type: post
 categories:
 - Bitcoin
 - javascript
-author:
-  login: luka
+author: luka
 ---
 If you want to use bitcoinjs-lib in Meteor js, try out this package: https://atmospherejs.com/ca333/bitcoinjs
 add it via:

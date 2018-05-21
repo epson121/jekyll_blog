@@ -2,12 +2,9 @@
 layout: post
 title: Shut down session on "Broken pipe" in terminal
 date: 2015-11-10 21:27:02.000000000 +00:00
-type: post
 categories:
 - server
-author:
-  email: traxdater12@gmail.com
-  display_name: luka
+author: luka
 ---
 So, you're connected to a server via SSH, doing your wizardry and dark magic. Suddenly, **a wild Pidgey appears**. Just kidding.
 

@@ -2,11 +2,6 @@
 layout: post
 title: '"repeat your email address" validation in Magento'
 date: 2015-09-25 20:11:36.000000000 +00:00
-type: post
-parent_id: '0'
-published: true
-password: ''
-status: publish
 categories:
 - html
 - javascript
@@ -19,18 +14,8 @@ tags:
 - javascript
 - Magento
 - PHP
-- repeat email
 - validation
-meta:
-  _rest_api_client_id: "-1"
-  _rest_api_published: '1'
-  _publicize_job_id: '15165104414'
-author:
-  login: lurajcevi
-  email: traxdater12@gmail.com
-  display_name: lurajcevi
-  first_name: ''
-  last_name: ''
+author: luka
 ---
 Imagine a form like this one:
 
