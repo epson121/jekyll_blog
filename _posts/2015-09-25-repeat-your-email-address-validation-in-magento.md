@@ -17,8 +17,9 @@ tags:
 - validation
 author: luka
 ---
-Imagine a form like this one:
+What can we do to implement a **repeat email** frontend validation?
 
+Imagine a form like this one:
 ![Form screenshot]({{ "/assets/img/dup_email.png" | absolute_url }})
 
 What can we do to implement a **repeat email** frontend validation? As you already know, Magento has a class-based frontend validation of forms. If you add a class to the form field, it will pass through the validation, and a message will appear if it validation failed. For example, adding `class="required"` to your elements will prevent the form submission until that field is populated. Easy as that. Where are those rules located? `/js/prototype/validation.js` has many rules (eg. `validate-cc-number`, `validate-email`, `validate-number` etc.).
