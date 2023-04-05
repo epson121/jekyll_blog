@@ -23,10 +23,6 @@ paginate_path: /page:num/
 category_archive_path: "/categories/#"
 tag_archive_path: "/tags/#"
 
-# disqus integration
-disqus:
-  shortname: lurajcevi
-
 # google-analytics
 google_analytics: UA-52335198-1
 
