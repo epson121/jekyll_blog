@@ -3,6 +3,9 @@ layout: post
 title: Enable MySQL query logging in Magento 2
 date: 2018-06-05 21:45:09.000000000 +02:00
 author: luka
+categories:
+- magento
+- mysql
 ---
 
 You're probably aware of the fact that Magento is a very heavy application. It is especially hard on database, and performs a lot of queries in order to function properly (which it does not a lot of times, unfortunately).

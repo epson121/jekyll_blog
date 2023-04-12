@@ -4,6 +4,7 @@ title: Shut down session on "Broken pipe" in terminal
 date: 2015-11-10 21:27:02.000000000 +00:00
 categories:
 - server
+- linux
 author: luka
 ---
 So, you're connected to a server via SSH, doing your wizardry and dark magic. Suddenly, **a wild Pidgey appears**. Just kidding.

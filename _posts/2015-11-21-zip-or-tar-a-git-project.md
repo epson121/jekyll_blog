@@ -4,6 +4,7 @@ title: Quickly zip or tar a git project
 date: 2015-11-21
 categories:
 - server
+- linux
 author: luka
 excerpt: "There are times when you need to zip your project, either for backup or whatever.
 You can always use tar or zip commands. But if you use git as a version control, there is a very simple way to achieve this."

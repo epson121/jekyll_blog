@@ -3,9 +3,12 @@ layout: post
 title: Get cached product image url in Magento 2
 date: 2020-06-05 18:00:00.000000000 +01:00
 author: luka
+categories:
+- magento
+- php
 ---
 
-Use `\Magento\Catalog\Model\Product\Image\UrlBuilder`
+Use `\Magento\Catalog\Model\Product\Image\UrlBuilder`, check out an example below.
 
 e.g.
 

@@ -7,6 +7,7 @@ categories:
 - Magento
 - PHP
 - Virtual Host
+- linux
 tags:
 - Apache
 author: luka

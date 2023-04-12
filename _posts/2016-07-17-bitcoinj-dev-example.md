@@ -5,6 +5,7 @@ date: 2016-07-17 21:28:09.000000000 +00:00
 categories:
 - ssh
 - server
+- linux
 author: luka
 ---
 

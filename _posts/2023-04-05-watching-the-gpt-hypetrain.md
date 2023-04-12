@@ -3,11 +3,11 @@ layout: post
 title: Watching the GPT hypetrain
 date: 2023-04-05 10:00:00.000000000 +01:00
 author: luka
+categories:
+- python
 ---
 
-It feels like everyone in tech circles is talking about this, and even non-tech people got interested, and joined on the fun.
-
-ChatGPT - the man of the hour.
+It feels like everyone in tech circles is talking about this, and even non-tech people got interested, and joined on the fun. __ChatGPT__ - the man of the hour.
 
 New versions seem to be coming up quickly, and some folks are asking for a moratorium on further development. Hearing this without much context, sounds pretty scary.
 
@@ -124,4 +124,6 @@ A:
 
 ```
 
-Hey, there on the screen! It's that guy you are!
+> Hey, there on the screen! It's that guy you are!
+>
+> -- <cite>Phillip J. Fry</cite>

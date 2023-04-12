@@ -5,6 +5,7 @@ date: 2016-07-13 21:28:09.000000000 +00:00
 categories:
 - ssh
 - server
+- linux
 author: luka
 ---
 When you're working on many different servers, you might get tired of constantly looking for an IP address, or a password to log in. This makes the whole process very tiring.. Ctrl+R on linux can be helpful if you remember a part of the hostname, but remembering the password is almost impossible - of course if you use a secure one.
