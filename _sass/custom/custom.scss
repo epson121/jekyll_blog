@@ -1,12 +1,12 @@
 .page-colour {
   position: relative;
   text-align: center;
-  margin-top: (-1 * $site-logo-height) / 2;
+  margin-top: calc((-1 * $site-logo-height) / 2);
   margin-bottom: 2em;
   z-index: 1;
 
   @include breakpoint($medium) {
-    margin-top: (-1.5 * $site-logo-height) / 2;
+    margin-top: calc((-1.5 * $site-logo-height) / 2);
   }
 
   .line {
@@ -15,5 +15,8 @@
       width: 100%;
       height: 5px;
   }
+}
 
+code {
+  white-space : pre-wrap !important;
 }

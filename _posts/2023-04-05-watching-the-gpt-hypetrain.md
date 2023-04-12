@@ -59,18 +59,16 @@ A:
 This PDF is about Luka Rajčević, a web developer from Šamac, Croatia. It outlines his experience in building and maintaining projects of various sizes, his knowledge in development of web applications using PHP programming language and MySQL database, and his expertise in Python/OpenWRT, PHP/Magento, and PHP/Fullstack development. It also includes his education, certifications, and language proficiency.
 
 Q: Does this person have an email address?
-A: 
-Yes, this person has an email address: lurajcevi@gmail.com
+A: Yes, this person has an email address: lurajcevi@gmail.com
 
 Q: Did this person ever work remotely?
-A: 
-Yes, this person has worked remotely.
+A: Yes, this person has worked remotely.
+
 Q: What programming languages does this person know?
-A: 
-This person knows PHP, MySQL, JavaScript, Python, Git, Linux.
+A: This person knows PHP, MySQL, JavaScript, Python, Git, Linux.
+
 Q: How many years of experience does this person have?
-A: 
-Eight years.
+A: Eight years.
 
 ```
 
@@ -79,8 +77,7 @@ It can also do poems.. :D
 ```text
 Q:Give me a very short poem about this document                  
 
-A: 
-A web developer from Šamac,
+A: A web developer from Šamac,
 Luka Rajčević is his name.
 He's worked on projects of all sizes,
 From niche to enterprise fame.
@@ -110,16 +107,13 @@ PS. To be all meta, I ran this post through my GPT md reader, and asked for its 
 
 ```text
 Q:Can you provide your critique of the post?
-A: 
-This post provides an interesting overview of the GPT technology and its potential applications. The author does a good job of explaining the technology and its implications, as well as providing examples of how it can be used. The author also provides a good critique of the technology, noting the potential for disruption and the unease it can cause. However, the post could have gone further in exploring the potential implications of the technology, such as the ethical considerations of using it, or the potential for misuse. Additionally, the post could have provided more detail on the technical aspects of the technology, such as how it works and how it is trained. Overall, this post provides an interesting overview of the GPT technology, but could have gone further in exploring its implications and technical aspects.
+A: This post provides an interesting overview of the GPT technology and its potential applications. The author does a good job of explaining the technology and its implications, as well as providing examples of how it can be used. The author also provides a good critique of the technology, noting the potential for disruption and the unease it can cause. However, the post could have gone further in exploring the potential implications of the technology, such as the ethical considerations of using it, or the potential for misuse. Additionally, the post could have provided more detail on the technical aspects of the technology, such as how it works and how it is trained. Overall, this post provides an interesting overview of the GPT technology, but could have gone further in exploring its implications and technical aspects.
 
 Q:How would you improve on this post?
-A: 
-One way to improve on this post would be to provide more detailed information about the technology behind ChatGPT and the Large Language Model. This could include a more in-depth explanation of how the neural network is trained, how the preprocessing works, and how the indices are used. Additionally, it would be helpful to provide more examples of how ChatGPT can be used in different contexts, such as providing translations or providing answers to specific questions. Finally, it would be beneficial to provide more information about the potential implications of this technology, such as the potential for job loss and disruption of the world economy.
+A: One way to improve on this post would be to provide more detailed information about the technology behind ChatGPT and the Large Language Model. This could include a more in-depth explanation of how the neural network is trained, how the preprocessing works, and how the indices are used. Additionally, it would be helpful to provide more examples of how ChatGPT can be used in different contexts, such as providing translations or providing answers to specific questions. Finally, it would be beneficial to provide more information about the potential implications of this technology, such as the potential for job loss and disruption of the world economy.
 
 Q:Give me 2 sentences that would improve this article
-A: 
-1. GPT has the potential to revolutionize the way we interact with machines, and its implications for the future of work are far-reaching. 
+A: 1. GPT has the potential to revolutionize the way we interact with machines, and its implications for the future of work are far-reaching. 
 2. By understanding the technology behind GPT, we can better prepare ourselves for the potential changes it may bring.
 
 ```
