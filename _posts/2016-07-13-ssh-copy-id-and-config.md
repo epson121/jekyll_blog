@@ -3,8 +3,6 @@ layout: post
 title: Short introduction to ssh-copy-id and ssh config files
 date: 2016-07-13 21:28:09.000000000 +00:00
 categories:
-- ssh
-- server
 - linux
 author: luka
 ---

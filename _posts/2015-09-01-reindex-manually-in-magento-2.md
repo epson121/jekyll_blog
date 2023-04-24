@@ -3,8 +3,7 @@ layout: post
 title: Reindex manually in Magento 2
 date: 2015-09-01 23:03:56.000000000 +00:00
 categories:
-- Magento2
-- shell
+- Magento
 tags:
 - indexers
 - Magento
