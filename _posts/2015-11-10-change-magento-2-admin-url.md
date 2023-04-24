@@ -3,7 +3,7 @@ layout: post
 title: Change Magento 2 admin url
 date: 2015-11-10 21:16:28.000000000 +00:00
 categories:
-- Magento2
+- Magento
 author: luka
 ---
 If you're like me, you probably just fly through the Magento 2 installation, without actually reading anything. Usually,

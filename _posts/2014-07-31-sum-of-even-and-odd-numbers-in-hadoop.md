@@ -5,7 +5,6 @@ date: 2014-07-31 20:29:40.000000000 +00:00
 categories:
 - Hadoop
 - Java
-- MapReduce
 tags:
 - Hadoop
 - Java

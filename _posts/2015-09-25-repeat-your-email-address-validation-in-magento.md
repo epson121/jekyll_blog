@@ -3,10 +3,8 @@ layout: post
 title: '"repeat your email address" validation in Magento'
 date: 2015-09-25 20:11:36.000000000 +00:00
 categories:
-- html
 - javascript
 - Magento
-- PHP
 tags:
 - email
 - form validation

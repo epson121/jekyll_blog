@@ -3,8 +3,6 @@ layout: post
 title: Bitcoinj dev - generate address and receive funds
 date: 2016-07-17 21:28:09.000000000 +00:00
 categories:
-- ssh
-- server
 - linux
 author: luka
 ---

@@ -3,7 +3,6 @@ layout: post
 title: Shut down session on "Broken pipe" in terminal
 date: 2015-11-10 21:27:02.000000000 +00:00
 categories:
-- server
 - linux
 author: luka
 ---

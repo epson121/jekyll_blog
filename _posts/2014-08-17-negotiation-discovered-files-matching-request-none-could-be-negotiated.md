@@ -6,7 +6,6 @@ categories:
 - Apache
 - Magento
 - PHP
-- Virtual Host
 - linux
 tags:
 - Apache

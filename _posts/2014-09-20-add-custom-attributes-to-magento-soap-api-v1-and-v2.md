@@ -5,7 +5,6 @@ date: 2014-09-20 20:46:33.000000000 +00:00
 categories:
 - Magento
 - PHP
-- Soap
 tags:
 - custom attribute
 - Magento

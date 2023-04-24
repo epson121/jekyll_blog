@@ -3,7 +3,6 @@ layout: post
 title: Quickly zip or tar a git project
 date: 2015-11-21
 categories:
-- server
 - linux
 author: luka
 excerpt: "There are times when you need to zip your project, either for backup or whatever.

@@ -4,7 +4,7 @@ title: Enable MySQL query logging in Magento 2
 date: 2018-06-05 21:45:09.000000000 +02:00
 author: luka
 categories:
-- magento
+- Magento
 - mysql
 ---
 
