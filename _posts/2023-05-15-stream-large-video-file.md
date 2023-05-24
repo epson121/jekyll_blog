@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Stram large video file in Symfony
+title: Stream large video file in Symfony
 date: 2023-05-15 10:00:00.000000000 +01:00
 author: luka
 categories:
